@@ -32,13 +32,15 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app.apps.AppConfig',
-    'bootstrap4',
+    'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pyuploadcare.dj',
+    'schedule',
 ]
 
 MIDDLEWARE = [
@@ -104,12 +106,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+UPLOADCARE = {
+    'pub_key': 'd8fa4fb3c9f849277d8d',
+    'secret': '05042802f54b4c616599',
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -122,3 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

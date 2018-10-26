@@ -1,0 +1,83 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'edit_profile' %}">Edit_profile</a>
+      </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
+    </li>
+    {% endif %}
+
+    </ul>
+
+  </div>
+</nav> -->
+
+
+
+<!-- Menu Section Start -->
+<header id="home">
+
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="logo">
+                        <a href="index-2.html">DMS</a>
+                    </div>
+                </div>
+
+                <div class="col-sm-9">
+                    <div class="navigation-menu">
+                        <div class="navbar">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a class="smoth-scroll" href="{% url 'home' %}">Home <div class="ripple-wrapper"></div></a>
+                                    </li>
+                                  {% if user.is_authenticated %}
+                                    <!-- <li><a class="smoth-scroll" href="{% url 'edit_profile' %}">Edit Profile</a>
+                                    </li> -->
+                                    <li><a class="smoth-scroll" href="{% url 'logout' %}">logout</a>
+                                    </li>
+                                    <li><a class="smoth-scroll" href="{% url 'profile' %}">Profile</a>
+                                  {% else %}
+                                    </li>
+                                    <li><a class="smoth-scroll" href="{% url 'login' %}">services</a>
+                                    </li>
+                                    <li><a class="smoth-scroll" href="{% url 'register' %}">Contact</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </header>
+ <!-- Menu Section End -->

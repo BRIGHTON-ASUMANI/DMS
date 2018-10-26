@@ -2,11 +2,78 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages
-from .forms import SignUpForm, EditProfileForm
-
+from .forms import SignUpForm, EditProfileForm, ProfileForm
+from .models import Event, Profile
+from django.contrib.auth.decorators import login_required
+from django.views import generic
+from django.views.generic.edit import UpdateView,DeleteView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import View
+import datetime as dt
 # Create your views here.
+
+@login_required(login_url='/login')
+def profile(request):
+    profile =Profile.objects.filter(user=request.user.id)
+    events =Event.objects.all()
+
+    return render(request, 'profile.html', { "events":events, "profile": profile})
+
+@login_required(login_url='/login')
+def dump(request,pk):
+    profile =Profile.objects.filter(user=request.user.id)
+    project =Project.objects.filter(user=request.user.id)
+    # commented = CommentForm()
+    return render(request,'dump.html',{"profile": profile, "project": project})
+
+@login_required( login_url='/login' )
+def create(request):
+    current_user=request.user
+    if request.method == 'POST':
+        form=ProfileForm( request.POST , request.FILES )
+        if form.is_valid( ):
+            update=form.save( commit=False )
+            update.user=current_user
+            update.save( )
+            return redirect( 'profile' )
+    else:
+        form=ProfileForm( )
+    return render( request , 'create.html' , {"form": form} )
+
+
+
+@login_required( login_url='/login' )
+def edit(request):
+    current_user=request.user
+    if request.method == 'POST':
+        form=ProfileForm( request.POST,request.FILES,instance=request.user.profiile)
+        if form.is_valid():
+            form.save( )
+            return redirect( 'profile' )
+    else:
+        form=ProfileForm( )
+    return render( request , 'edit.html' , {"form": form} )
+
+
+
+
+class ProfileUpdate(UpdateView):
+   model= Profile
+   template_name = 'edit.html'
+   fields = ['picture','bio','phone_number']
+
+
+class ProfileDelete(DeleteView):
+   model=Profile
+   success_url = reverse_lazy('profile')
+
+
+
+
 def home(request):
-    return render(request, 'registration/home.html', {} )
+    print(request.user.id)
+    print(dt.datetime.now().strftime('%H:%M:%S'))
+    return render(request, 'home.html', {} )
 
 def login_user(request):
     if request.method == 'POST':
@@ -21,7 +88,7 @@ def login_user(request):
             messages.success(request, ('error logging in - please try again' ))
             return redirect('login')
     else:
-        return render(request, 'registration/login.html', {} )
+        return render(request, 'login.html', {} )
 
 def logout_user(request):
     logout(request)
@@ -43,7 +110,7 @@ def register_user(request):
     else:
         form = SignUpForm()
     context = {'form': form }
-    return render(request, 'registration/register.html',context)
+    return render(request, 'register.html',context)
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -56,7 +123,7 @@ def edit_profile(request):
     else:
         form = EditProfileForm(instance=request.user)
     context = {'form': form }
-    return render(request, 'registration/edit_profile.html',context)
+    return render(request, 'edit_profile.html',context)
 
 def change_password(request):
     if request.method == 'POST':
@@ -70,4 +137,4 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
     context = {'form': form }
-    return render(request, 'registration/change_password.html',context)
+    return render(request, 'change_password.html',context)

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+{{block.super}}
+
+
+ <div class="col-lg-6 col-lg-offset-3" style='margin-top:20px;'>
+        <div class="card-body">
+                <form action="{%url 'edit' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="form-group">
+                    <input type="submit" class="btn btn-info btn-sm" value="Post">
+                </div>
+
+                </form>
+<p><small><a href="{% url 'change_password' %}">click here</a> To change your Password</small></p>
+
+<p><small><a href="{% url 'edit_profile' %}">click here</a> To change your Password</small></p>
+
+        </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+{% if profile %}
+{% for prof in profile %}
+
+
+<!-- Home Section Start -->
+<section class="home-section">
+    <div class="container">
+        <div class="row">
+
+             <div class="col-sm-offset-2 col-md-4 col-sm-6 margin-left-setting">
+                <div class="margin-top-150">
+
+                 <div class="table-responsive">
+          <table class="table">
+          <tr>
+              <td>Username</td>
+            <td>{{user.username}}</td>
+           </tr>
+                         <tr>
+            <td>Email</td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <td>First Name</td>
+            <td>{{user.first_name}}</td>
+           </tr>
+          <tr>
+            <td>Last Name</td>
+            <td>{{user.last_name}}</td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>{{prof.contact}}</td>
+          </tr>
+            <tr>
+            <td>Bio</td>
+            <td>{{prof.bio}}</td>
+          </tr>
+        </table>
+        </div>
+                 </div>
+               </div>
+
+             <div class="col-md-5 col-sm-6">
+                <div class="me-image">
+                  <img  src='{{prof.picture.cdn_url}}' class='img-responsive img-rounded' style="height: 200px;width: 50%;">
+              </div>
+            </div>
+            <!--Delete Album -->
+                  <!-- <form action="{% url 'profile-delete' prof.id %}" method="post" style="display: inline;">
+                      {% csrf_token %}
+                      <input type="hidden" name="project_id" value="{{ prof.id }}" />
+                      <button type="submit" class="btn btn-danger btn-lg">
+                          <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                  </form> -->
+            <!--edit-album-->
+                   <!-- <form action="{% url 'profile-update' prof.id %}" method="post" style="display: inline;">
+                       {% csrf_token %}
+                       <input type="hidden" name="project_id" value="{{ prof.id }}" />
+                       <button type="submit" class="btn btn-primary btn-lg">
+                           <span class="glyphicon glyphicon-edit"></span>
+                       </button>
+                   </form> -->
+
+          </div>
+        </div>
+    </section>
+    <!-- Home Section End -->
+{% endfor %}
+{% else %}
+
+<a href="{% url 'edit_profile'%}"> Please create and edit your profile</a>
+{% endif %}
+
+{% if project %}
+
+
+  <!-- Services Start -->
+  <section id="services" class="services-section section-space-padding">
+      <div class="container">
+         <div class="row">
+              <div class="col-sm-12">
+                  <div class="section-title">
+                      <h2 style='color:#00ff41;'>My projects.</h2>
+                        <div class="divider dark">
+					   <i class="icon-drop" style='color:#00ff41;' ></i>
+					 </div>
+                  </div>
+              </div>
+          </div>
+
+
+<div class="row margin-top-30"  data-toggle="modal" data-target="#{{pic.id}}">
+{% for pic in project %}
+        <div class="col-md-4 col-sm-6">
+				<div class="services-detail">
+					<i class="fa fa-desktop color-1" aria-hidden="true"></i>
+          <h3 class="color-1"  data-toggle="modal" data-target="#{{pic.id}}">{{pic.title}}</h3>
+<!--
+          <!- Delete Album -->
+                             <!-- <form action="{% url 'album-delete' pic.id %}" method="post" style="display: inline;">
+                                 {% csrf_token %}
+                                 <input type="hidden" name="project_id" value="{{ pic.id }}" />
+                                 <button type="submit" class="btn btn-danger btn-lg">
+                                     <span class="glyphicon glyphicon-trash"></span>
+                                 </button>
+                             </form> -->
+                             <!--edit-album-->
+                                                  <!-- <form action="{% url 'album-update' pic.id %}" method="post" style="display: inline;">
+                                                      {% csrf_token %}
+                                                      <input type="hidden" name="project_id" value="{{ pic.id }}" />
+                                                      <button type="submit" class="btn btn-primary btn-lg">
+                                                          <span class="glyphicon glyphicon-edit"></span>
+                                                      </button>
+                                                  </form> -->
+
+
+  <!-- Modal -->
+  <div class="modal fade " id="{{pic.id}}" role="dialog" style="color:#00ff41; ">
+    <div class="modal-dialog" >
+
+      <!-- Modal content-->
+      <div class="modal-content"  style="background-color: #000000">
+        <div class="modal-header">
+          <button type="button" class="close"  style="color:#00ff41;" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{pic.title}}</h4>
+        </div>
+        <div class="modal-body">
+<div>
+<img src="{{pic.landing_page.cdn_url}}" data-toggle="modal" data-target="#{{landing_page.id}}" alt="{{pic.title}}" style="width:80%;height:220px;" >
+</div>
+<div>
+          {% for comment in pic.comments.all %}
+             <!-- <a href='{{comment.user.username}}'>{{review.user.username}}</a> -->
+<hr>
+            {{comment.review}}
+</hr>
+
+             </br>
+             {% endfor %}
+</div>
+</div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+				</div>
+			</div>
+      {% endfor %}
+      {% else %}
+      <p>You have never posted anything</p>
+      {% endif %}
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services End -->
+
+
+
+
+
+             <footer class="footer-section">
+                 <div class="container">
+                     <div class="row">
+
+                     <div class="col-md-12">
+                       <ul class="social-icon margin-bottom-30">
+                          <li><a href="#" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                          <li><a href="#" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                          <li><a href="#" target="_blank" class="instagram"><i class="fab fa-instagram"></i></i></a></li>
+                          <li><a href="#" target="_blank" class="dribbble"><i class="fab fa-dribbble"></i></a></li>
+                        </ul>
+                   </div>
+
+                      <div class="col-md-12 uipasta-credit">
+                         <p style='color: #00ff41;'>Design By brighton </a>
+                         </div>
+
+                      </div>
+                 </div>
+             </footer>
+             <!-- Footer End -->
+
+
+
+
+    <!-- Back to Top Start -->
+    <a href="#" class="scroll-to-top"><i class="icon-arrow-up-circle"></i></a>
+    <!-- Back to Top End -->
+
+
+  </body>
+ </html>
+
+
+
+
+{% endblock %}

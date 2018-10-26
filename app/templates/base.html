@@ -1,0 +1,93 @@
+{% load bootstrap3 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Meta Tag -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      <!-- SEO -->
+      <meta name="description" content="150 words">
+      <meta name="author" content="uipasta">
+      <meta name="url" content="">
+      <meta name="copyright" content="company name">
+      <meta name="robots" content="index,follow">
+
+
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+    <title> DMS </title>
+  {% endif %}
+
+  {% block styles %}
+    {% bootstrap_css %}
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+  <!-- Google Web Fonts  -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+ <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/plugin.css' %}" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+  {% endblock %}
+
+</head>
+
+<!-- including the navabar-->
+    {% include "navbar.html" %}
+
+    <div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class='alert alert-warning alert-dismissable' role='alert'>
+    <button class="close" data-dismiss='alert'>
+    <small><sup>x</sup></small>
+    </button>
+    {{ message }}
+    </div>
+
+
+    {% endfor %}
+    {% endif %}
+    </div>
+
+    {% block content %}
+
+
+    {%endblock%}
+
+    {% block scripts %}
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js" charset="utf-8"></script>
+<script>
+UPLOADCARE_PUBLIC_KEY = 'd8fa4fb3c9f849277d8d';
+</script>
+<script src="{% static 'js/plugin.js'%}"></script>
+<script src="{% static 'js/scripts.js'%}"></script>
+<script src="{% static 'js/jquery.min.js'%}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+     {% bootstrap_javascript %}
+
+     <!-- Back to Top Start -->
+       <a href="#" class="scroll-to-top"><i class="icon-arrow-up-circle"></i></a>
+       <!-- Back to Top End -->
+
+
+
+    {% endblock %}
+</body>
+</html>
