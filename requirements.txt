@@ -12,6 +12,7 @@ icalendar==4.0.3
 idna==2.7
 psycopg2==2.7.5
 python-dateutil==2.7.3
+python-decouple==3.1
 python-logstash==0.4.6
 pytz==2018.6
 pyuploadcare==2.5.0
