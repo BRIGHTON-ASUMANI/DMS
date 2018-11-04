@@ -16,7 +16,7 @@ For more details and installations please check out the requirements.txt and run
 4. Inside the django project start a django-app -  django-admin startapp appname
 5. for more info please read the django documentation
 6. install the requirements.txt (pip install -r requirements.txt)
-7. You can also git clone this application on github 
+7. You can also git clone this application on github
 
 
 ### __Technologies Used__
@@ -34,7 +34,7 @@ For more details and installations please check out the requirements.txt and run
 
 ### __Authors__
 ***BRIGHTON ASUMANI***
-* For anyproblem please contact at asumanibrighton@gmail.com
+* For anyproblem please contact at [Brighton](asumanibrighton@gmail.com)   
 
 ### __Licence__
 This project is licensed under the MIT License - see the LICENSE.md file for details
