@@ -53,7 +53,7 @@ def waiter():
             if  str(x.start_time) == now :
                 sms(x)
                 print('matd6f7yughiojopjihgf;vcjihuyi ukvfkjdbcknxvb bfidukhcvx oifvdkjchvoufedkjchvouefvdkjhcvo fekjdchvbiu kjfhdcbvi hjfgdvbv ijhfdhbui fkdjhbcv nuifkdjhb nifdkjhckv nufidkjchb nifdkjcmbyftduyiuhgf7tuygched')
-                continue
+                continue    
             else:
                 print('badoedrftgyhujikolp;['']')
 
