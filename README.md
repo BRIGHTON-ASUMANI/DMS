@@ -35,7 +35,7 @@ For more details and installations please check out the requirements.txt and run
 
 ### __Authors__
 ***BRIGHTON ASUMANI***
-* For anyproblem please contact at [Brighton](asumanibrighton@gmail.com)   
+* For anyproblem please contact at (asumanibrighton@gmail.com)   
 
 ### __Licence__
 This project is licensed under the MIT License - see the LICENSE.md file for details
