@@ -21,7 +21,7 @@ def sms(request):
             phones.append(numbers)
     # Initialize SDK
     username = "brighton"    # use 'sandbox' for development in the test environment
-    api_key = "18696560f647f921b072950f4ef9e5c24a76e583ec26b6ceb4f2ef6d34403daa"      # use your sandbox app API key for development in the test environment
+    api_key = "18696560f647f921b072950f4ef9e5c24a76e583ec26b6ceb4f2ef6d34403daabb"      # use your sandbox app API key for development in the test environment
     africastalking.initialize(username, api_key)
 
 
